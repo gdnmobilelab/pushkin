@@ -1,0 +1,66 @@
+{
+  "name": "subscription",
+  "runtime": "nodejs",
+  "description": "Serverless Lambda function for project: pushy",
+  "customName": false,
+  "customRole": false,
+  "handler": "handler.handler",
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [],
+    "optimize": {
+      "exclude": [ "aws-sdk" ],
+      "transforms": [
+          {
+              "name": "babelify",
+              "opts": {
+                  "presets": [
+                      "es2015-node4"
+                  ]
+              }
+          }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "path": "subscription",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {
+        "what": "yes"
+        },
+      "requestTemplates": {
+        "application/json": ""
+      },
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json": ""
+          }
+        }
+      }
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}

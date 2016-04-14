@@ -1,0 +1,9 @@
+{
+  "name": "pushy",
+  "custom": {},
+  "plugins": [
+  	"serverless-optimizer-plugin",
+  	"serverless-offline",
+  	"serverless-mocha-plugin"
+  ]
+}

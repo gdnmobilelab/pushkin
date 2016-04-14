@@ -1,0 +1,22 @@
+{
+  "name": "pushy",
+  "version": "0.0.1",
+  "description": "A Serverless Project and its Serverless Plugin dependencies.",
+  "author": "me",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015-node4": "^2.1.0",
+    "serverless-mocha-plugin": "^0.5.1",
+    "serverless-offline": "^2.2.10"
+  },
+  "devDependencies": {
+    "serverless-webpack-plugin": "^0.4.0",
+    "webpack": "^1.12.15"
+  }
+}
