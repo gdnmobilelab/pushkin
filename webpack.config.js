@@ -5,6 +5,9 @@ module.exports = {
     externals: [
         'aws-sdk' // this is provided by Lambda itself
     ],
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+      },
     module: {
         loaders: [
             {

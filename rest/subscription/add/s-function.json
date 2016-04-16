@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "add",
   "runtime": "nodejs4.3",
   "description": "Serverless Lambda function for project: pushy",
   "customName": false,
@@ -13,7 +13,7 @@
   },
   "endpoints": [
     {
-      "path": "test",
+      "path": "add",
       "method": "GET",
       "type": "AWS",
       "authorizationType": "none",
@@ -42,7 +42,8 @@
   "environment": {
     "SERVERLESS_PROJECT": "${project}",
     "SERVERLESS_STAGE": "${stage}",
-    "SERVERLESS_REGION": "${region}"
+    "SERVERLESS_REGION": "${region}",
+    "WHAT":"${iamRoleArnLambda}"
   },
   "vpc": {
     "securityGroupIds": [],

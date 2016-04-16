@@ -1,8 +1,20 @@
 {
   "name": "pushy",
-  "custom": {},
+  "custom": {
+    "serverless-mocha-plugin": {
+        "bootstrap": "test-bootstrap/babel.js"
+    },
+    "serverless-offline": {
+      "babelOptions": {
+        "presets": ["es2015-node4"]
+      }
+    },
+    "webpack": {
+        "configPath": "./webpack.config.js"
+    }
+  },
   "plugins": [
-  	"serverless-optimizer-plugin",
+  	"serverless-webpack-plugin",
   	"serverless-offline",
   	"serverless-mocha-plugin"
   ]
