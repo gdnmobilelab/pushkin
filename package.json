@@ -17,6 +17,7 @@
     "babel-preset-es2015-node4": "^2.1.0",
     "bluebird": "^3.3.5",
     "chai": "^3.5.0",
+    "json-loader": "^0.5.4",
     "redis": "^2.6.0-1",
     "serverless-mocha-plugin": "^0.5.1",
     "serverless-offline": "^2.2.10",

@@ -14,7 +14,16 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.json$/,
+                loader: 'json'
             }
         ]
+    },
+    resolve: {
+        alias: {
+            'node_modules/redis-commands/commands': 'node_modules/redis-commands/commands.json'
+        }
     }
 }
