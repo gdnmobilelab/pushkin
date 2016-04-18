@@ -14,7 +14,7 @@
     }
   },
   "plugins": [
-  	"serverless-offline",
-  	"serverless-mocha-plugin"
+    "serverless-webpack-plugin",
+  	"serverless-offline"
   ]
 }
