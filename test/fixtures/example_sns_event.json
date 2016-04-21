@@ -1,0 +1,18 @@
+{
+    "EventSource": "aws:sns",
+    "EventVersion": "1.0",
+    "EventSubscriptionArn": "arn:aws:sns:us-east-1:123123123123:test:e0b04b92-c198-444e-afa7-4aab44edeef3",
+    "Sns": {
+        "Type": "Notification",
+        "MessageId": "f01bb2c6-853a-5b0d-9a2c-fd575b850276",
+        "TopicArn": "arn:aws:sns:us-east-1:123123123123:test",
+        "Subject": null,
+        "Message": "{\"test\":\"test\"}",
+        "Timestamp": "2016-04-20T19:46:07.774Z",
+        "SignatureVersion": "1",
+        "Signature": "sig",
+        "SigningCertUrl": "https://sns.us-east-1.amazonaws.com/cert.pem",
+        "UnsubscribeUrl": "https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe",
+        "MessageAttributes": {}
+    }
+}

@@ -1,4 +1,4 @@
-import redisClient from '../lib/redis';
+import redisClient from '../lib/redis/client';
 import should from 'should';
 import env from './env.json';
 
@@ -8,6 +8,6 @@ Object.assign(process.env, env);
 
 
 afterEach(function() {
-    return redisClient.flushdbAsync()
+    return redisClient.flushdb()
 })
 

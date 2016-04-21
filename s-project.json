@@ -15,6 +15,7 @@
   },
   "plugins": [
     "serverless-webpack-plugin",
-  	"serverless-offline"
+  	"serverless-offline",
+    "serverless-plugin-autoprune"
   ]
 }

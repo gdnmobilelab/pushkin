@@ -10,6 +10,8 @@ import fakeredis from 'fakeredis';
 mockery.enable({ useCleanCache: true });
 mockery.warnOnUnregistered(false);
 mockery.registerMock('redis', {
+    RedisClient: fakeredis.RedisClient,
+    Multi: fakeredis.Multi,
     createClient: function(host, port) {
 
         // by default fakeredis simulates network latency, we don't really

@@ -1,0 +1,16 @@
+{
+    "errorResponseTemplate": {
+        "application/json": {
+            "success": false,
+            "error": "$input.path('$').errorMessage"
+        }
+    },
+    "environment": {
+        "SERVERLESS_PROJECT": "${project}",
+        "SERVERLESS_STAGE": "${stage}",
+        "SERVERLESS_REGION": "${region}",
+        "IAM_ROLE":"${iamRoleArnLambda}",
+        "REDIS_HOST": "${redis_host}",
+        "PUBLISH_BATCH_SNS_TOPIC": "${publish_batching_topic}"
+    }
+}

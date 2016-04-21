@@ -36,9 +36,18 @@
               "Action": [
                 "logs:CreateLogGroup",
                 "logs:CreateLogStream",
-                "logs:PutLogEvents"
+                "logs:PutLogEvents",
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "sns:Subscribe",
+                "sns:Publish",
+                "sns:ListSubscriptionsByTopic",
+                "sns:CreateTopic",
+                "sns:DeleteTopic",
+                "sns:UnSubscribe"
               ],
-              "Resource": "arn:aws:logs:${region}:*:*"
+              "Resource": "*"
             }
           ]
         },

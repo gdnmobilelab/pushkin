@@ -35,6 +35,14 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                unused: true,
+                dead_code: true,
+                warnings: false,
+                drop_debugger: true
+            }
+        })
     ]
 }

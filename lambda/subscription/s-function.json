@@ -1,0 +1,84 @@
+{
+  "name": "subscription",
+  "runtime": "nodejs4.3",
+  "description": "Serverless Lambda function for project: pushy",
+  "customName": false,
+  "customRole": false,
+  "handler": "handler.handler",
+  "timeout": 6,
+  "memorySize": 128,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [
+    {
+      "path": "subscription/{topic}",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": {
+          "action": "add",
+          "topic": "$input.params('topic')",
+          "endpoint": "$input.json('endpoint')"
+        }
+      },
+      "responses": {
+        "InvalidEndpoint:(.*)": {
+          "statusCode": "400",
+          "responseTemplates": "$${errorResponseTemplate}"
+        },
+        "NotFound:(.*)": {
+          "statusCode": "404",
+          "responseTemplates": "$${errorResponseTemplate}"
+        },
+        "default": {
+          "statusCode": "201"
+        }
+      }
+    },
+    {
+      "path": "subscription/{topic}",
+      "method": "DELETE",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": {
+          "action": "remove",
+          "topic": "$input.params('topic')",
+          "endpoint": "$input.json('endpoint')"
+        }
+      },
+      "responses": {
+        "InvalidEndpoint:(.*)": {
+          "statusCode": "400",
+          "responseTemplates": "$${errorResponseTemplate}"
+        },
+        "NotFound:(.*)": {
+          "statusCode": "404",
+          "responseTemplates": "$${errorResponseTemplate}"
+        },
+        "default": {
+          "statusCode": "200"
+        }
+      }
+    }
+  ],
+  "events": [],
+  "environment": "$${environment}",
+  "vpc": {
+    "securityGroupIds": [
+      "sg-b1bcb5c9"
+    ],
+    "subnetIds": [
+      "subnet-68f3b01e"
+    ]
+  }
+}
