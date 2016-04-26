@@ -12,5 +12,25 @@
         "IAM_ROLE":"${iamRoleArnLambda}",
         "REDIS_HOST": "${redis_host}",
         "PUBLISH_BATCH_SNS_TOPIC": "${publish_batching_topic}"
+    },
+    "apiCorsOptionsResponse": {
+    "default": {
+      "statusCode": "200",
+      "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS,HEAD,DELETE,PATCH,POST,PUT'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Max-Age": "'3600'"
+      },
+      "responseModels": {},
+      "responseTemplates": {
+        "application/json": ""
+      }
     }
+  },
+  "apiCorsRequestTemplate": {
+    "application/json": {
+      "statusCode": 200
+    }
+  }
 }

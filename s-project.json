@@ -11,11 +11,17 @@
     },
     "webpack": {
         "configPath": "./webpack.config.js"
+    },
+    "cors": {
+      "allowOrigin": "*",
+      "allowHeaders": ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key"]
     }
   },
   "plugins": [
     "serverless-webpack-plugin",
   	"serverless-offline",
-    "serverless-plugin-autoprune"
+    "serverless-plugin-autoprune",
+    "serverless-plugin-sns",
+    "serverless-cors-plugin"
   ]
 }

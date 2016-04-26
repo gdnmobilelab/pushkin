@@ -1,6 +1,6 @@
 import mockery from 'mockery';
 import fakeredis from 'fakeredis';
-
+import should from 'should';
 /*
     We mock out the redis module so that we can just
     use a local in-memory module instead of requiring
@@ -20,3 +20,5 @@ mockery.registerMock('redis', {
         return fakeredis.createClient(host, port, {fast : true})
     }
 });
+
+console.info = () => {}

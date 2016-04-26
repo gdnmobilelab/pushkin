@@ -24,7 +24,8 @@
         "application/json": {
           "action": "add",
           "topic": "$input.params('topic')",
-          "endpoint": "$input.json('endpoint')"
+          "subscription": "$input.json('$')",
+          "apiKey": "$input.params('x-api-key')"
         }
       },
       "responses": {

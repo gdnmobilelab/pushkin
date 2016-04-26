@@ -1,4 +1,5 @@
 import Subscription from '../../lib/subscription';
+import 'source-map-support/register'
 
 export function handler(event, context, cb) {
     Promise.resolve()
