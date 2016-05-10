@@ -1,8 +1,9 @@
 import Subscription from '../../lib/subscription';
-import 'source-map-support/register'
+import lambdaErrorHandler from '../../lib/util/lambda-error-handler';
+import PromisifyLambda from '../../lib/util/promisify-lambda';
 
-export function handler(event, context, cb) {
-    Promise.resolve()
+export default (event, context, cb) => {
+    return Promise.resolve()
     .then(() => {
 
         if (event.action === 'add') {
@@ -13,12 +14,9 @@ export function handler(event, context, cb) {
 
     })
     .then(() => {
-        context.done(null, {
+        cb(null, {
             success: true
-        })
+        });
     })
-    .catch((err) => {
-        console.log('failed')
-        context.fail(err.toString());
-    });
-}
+    .catch(lambdaErrorHandler(cb))
+};

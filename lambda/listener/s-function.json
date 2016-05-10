@@ -1,25 +1,18 @@
 {
   "name": "listener",
   "runtime": "nodejs4.3",
-  "description": "Serverless Lambda function for project: pushy",
+  "description": "Lambda to pick up topic publishes from SNS and re-broadcast",
   "customName": false,
-  "customRole": false,
-  "handler": "handler.handler",
+  "customRole": "${exec_role}",
+  "handler": "listener.default",
   "timeout": 6,
-  "memorySize": 1024,
+  "memorySize": 128,
   "authorizer": {},
   "custom": {
     "excludePatterns": []
   },
   "endpoints": [],
   "events": [],
-  "environment": {
-    "SERVERLESS_PROJECT": "${project}",
-    "SERVERLESS_STAGE": "${stage}",
-    "SERVERLESS_REGION": "${region}"
-  },
-  "vpc": {
-    "securityGroupIds": [],
-    "subnetIds": []
-  }
+  "environment": "$${environment}",
+  "vpc": "$${vpc}"
 }

@@ -1,10 +1,10 @@
 {
-  "name": "subscription",
+  "name": "publish",
   "runtime": "nodejs4.3",
-  "description": "Add and remove individual user subscriptions to topics",
+  "description": "Serverless Lambda function for project: pushy",
   "customName": false,
   "customRole": "${exec_role}",
-  "handler": "subscription.default",
+  "handler": "publish.handler",
   "timeout": 6,
   "memorySize": 128,
   "authorizer": {},
@@ -13,7 +13,7 @@
   },
   "endpoints": [
     {
-      "path": "topics/{topic}/subscriptions",
+      "path": "topics/{topic}/publish",
       "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
@@ -23,24 +23,6 @@
       "requestTemplates": {
         "application/json": {
           "action": "add",
-          "topic": "$input.params('topic')",
-          "subscription": "$input.json('$')",
-          "apiKey": "$input.params('x-api-key')"
-        }
-      },
-      "responses": "$${allResponseTemplates}"
-    },
-    {
-      "path": "topics/{topic}/subscriptions",
-      "method": "DELETE",
-      "type": "AWS",
-      "authorizationType": "none",
-      "authorizerFunction": false,
-      "apiKeyRequired": true,
-      "requestParameters": {},
-      "requestTemplates": {
-        "application/json": {
-          "action": "remove",
           "topic": "$input.params('topic')",
           "subscription": "$input.json('$')",
           "apiKey": "$input.params('x-api-key')"

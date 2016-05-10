@@ -1,0 +1,54 @@
+{
+  "name": "get-subscriptions",
+  "runtime": "nodejs4.3",
+  "description": "Serverless Lambda function for project: pushy",
+  "customName": false,
+  "customRole": false,
+  "handler": "get-subscriptions.handler",
+  "timeout": 6,
+  "memorySize": 128,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [
+    {
+      "path": "get-subscriptions",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": true,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": {
+          "subscription": "$input.json('$')",
+          "apiKey": "$input.params('x-api-key')"
+        }
+      },
+      "responses": {
+        "InvalidEndpoint:(.*)": {
+          "statusCode": "400",
+          "responseTemplates": "$${errorResponseTemplate}"
+        },
+        "NotFound:(.*)": {
+          "statusCode": "404",
+          "responseTemplates": "$${errorResponseTemplate}"
+        },
+        "default": {
+          "statusCode": "201"
+        }
+      }
+    },
+    {
+      "path": "get-subscriptions",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsOptionsResponse}"
+    }
+  ],
+  "events": [],
+  "environment": "$${environment}",
+  "vpc": "$${vpc}"
+}

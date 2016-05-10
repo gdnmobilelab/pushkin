@@ -24,6 +24,7 @@
     "fsmonitor": "^0.2.4",
     "json-loader": "^0.5.4",
     "mock-aws-sinon": "^1.0.3",
+    "promise-redis": "0.0.5",
     "promise-tools": "^1.0.2",
     "redis": "^2.6.0-1",
     "request": "^2.72.0",

@@ -6,9 +6,6 @@ module.exports = {
     externals: [
         'aws-sdk' // this is provided by Lambda itself
     ],
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
     // Make webpack exit with error code when it encounters an error. Why is this not default?!
     bail: true,
     module: {
@@ -25,6 +22,7 @@ module.exports = {
         ]
     },
     resolve: {
+        extensions: ['', '.json', '.js', '.jsx'],
         alias: {
             // This is really stupid but node_redis tries to require hiredis, which we don't
             // want to provide. Adding this stops the build failing.

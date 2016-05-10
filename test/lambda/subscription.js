@@ -1,4 +1,4 @@
-import {handler} from '../../lambda/subscription/handler.js';
+import handler from '../../lambda/subscription/subscription.js';
 import PromisifyLambda from 'promisify-aws-lambda';
 import Subscription from '../../lib/subscription';
 import {EXAMPLE_REQUEST} from '../fixtures/example_web_push_subscription';

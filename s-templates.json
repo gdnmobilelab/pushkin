@@ -1,9 +1,27 @@
 {
     "errorResponseTemplate": {
-        "application/json": {
-            "success": false,
-            "error": "$input.path('$').errorMessage"
-        }
+        "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage')))\n$errorMessageObj.response"
+    },
+    "allResponseTemplates": {
+       ".*\"statusCode\":400.*": {
+          "statusCode": "400",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       ".*\"statusCode\":403.*": {
+          "statusCode": "403",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       ".*\"statusCode\":500.*": {
+          "statusCode": "500",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       ".*\"statusCode\":404.*": {
+          "statusCode": "404",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       "default": {
+          "statusCode": "200"
+       }
     },
     "environment": {
         "SERVERLESS_PROJECT": "${project}",
@@ -11,8 +29,10 @@
         "SERVERLESS_REGION": "${region}",
         "IAM_ROLE":"${iamRoleArnLambda}",
         "REDIS_HOST": "${redis_host}",
-        "PUBLISH_BATCH_SNS_TOPIC": "${publish_batching_topic}"
+        "GCM_API_KEY": "${gcm_api_key}",
+        "API_KEY__ADMIN": "${admin_api_key}"
     },
+    "vpc": "${vpc}",
     "apiCorsOptionsResponse": {
     "default": {
       "statusCode": "200",

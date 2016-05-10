@@ -12,12 +12,12 @@ mockery.warnOnUnregistered(false);
 mockery.registerMock('redis', {
     RedisClient: fakeredis.RedisClient,
     Multi: fakeredis.Multi,
-    createClient: function(host, port) {
+    createClient: function() {
 
         // by default fakeredis simulates network latency, we don't really
         // need/want that.
 
-        return fakeredis.createClient(host, port, {fast : true})
+        return fakeredis.createClient(1000, "dummyhost.local", {fast : true})
     }
 });
 
