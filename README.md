@@ -34,10 +34,13 @@ Clone the repo, then run
     
 to install all dependencies. It uses the [Serverless](https://github.com/serverless/serverless)
 framework to simplify deploying lambdas. More installation instructions are needed
-but code can be deployed by running
-
+but code can be deployed by running:
 
     sls dash deploy
+    
+Tests can be run with:
+
+    npm run test
    
 ## Status
 
