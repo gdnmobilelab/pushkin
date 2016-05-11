@@ -47,6 +47,13 @@
         }
       },
       "responses": "$${allResponseTemplates}"
+    },
+    {
+      "path": "topics/{topic}/subscriptions",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsOptionsResponse}"
     }
   ],
   "events": [],

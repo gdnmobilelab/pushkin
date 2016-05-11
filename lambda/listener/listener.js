@@ -1,8 +1,7 @@
 import Subscription from '../../lib/subscription';
 import { getTopicNameFromArn } from '../../lib/arn';
-import PromisifyLambda from '../../lib/util/promisify-lambda';
 
-export default PromisifyLambda((event, context, cb) => {
+export default (event, context, cb) => {
     Promise.resolve()
     .then(() => {
         // if (!event.Sns.Message['web-push']) {
@@ -11,13 +10,13 @@ export default PromisifyLambda((event, context, cb) => {
         // }
         let sns = event.Records[0].Sns;
         let topicName = getTopicNameFromArn(sns.TopicArn);
-    
+        console.info("Sending broadcast to " + topicName);
         return Subscription.broadcast(topicName, sns);
     })
     .then(() => {
-        context.done(null)
+        cb(null, true);
     })
     .catch((err) => {
-        context.done(err);
+        cb(err);
     })
-});
+}

@@ -27,8 +27,8 @@ describe('Subscription/add', function() {
             response.should.equal(true);
             
             let multi = redisClient.multi();
-            multi.zscore('topic:subscriptions::test-topic', JSON.stringify(EXAMPLE_REQUEST.data));
-            multi.sismember(namespaces.allTopicList(), 'topic:subscriptions::test-topic')
+            multi.zscore(namespaces.topic('test-topic'), JSON.stringify(EXAMPLE_REQUEST.data));
+            multi.sismember(namespaces.allTopicList(), namespaces.topic('test-topic'))
             return multi.exec();
             
         })
@@ -56,7 +56,7 @@ describe('Subscription/add', function() {
         let newExample = JSON.parse(JSON.stringify(EXAMPLE_REQUEST))
         newExample.data.endpoint = 'https://blah.blah';
 
-        return redisClient.zadd(['topic:subscriptions::test-topic', 1, JSON.stringify(EXAMPLE_REQUEST)])
+        return redisClient.zadd([namespaces.topic('test-topic'), 1, JSON.stringify(EXAMPLE_REQUEST)])
         .then(function() {
             return Subscription.add('test-topic', newExample)
         })

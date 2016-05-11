@@ -4,7 +4,7 @@
   "description": "Serverless Lambda function for project: pushy",
   "customName": false,
   "customRole": "${exec_role}",
-  "handler": "publish.handler",
+  "handler": "publish.default",
   "timeout": 6,
   "memorySize": 128,
   "authorizer": {},
@@ -13,7 +13,7 @@
   },
   "endpoints": [
     {
-      "path": "topics/{topic}/publish",
+      "path": "topics/{topic}",
       "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
@@ -22,9 +22,8 @@
       "requestParameters": {},
       "requestTemplates": {
         "application/json": {
-          "action": "add",
           "topic": "$input.params('topic')",
-          "subscription": "$input.json('$')",
+          "message": "$input.json('$')",
           "apiKey": "$input.params('x-api-key')"
         }
       },

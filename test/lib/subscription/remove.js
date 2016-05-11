@@ -23,15 +23,15 @@ describe('Subscription/remove', function() {
 
     it('Removes users from a topic subscription', function() {
         // First add the entry we want to test removing.
-        return redisClient.zadd(['topic:subscriptions::test-topic', 1, JSON.stringify(BROWSER_SUBSCRIPTION_OBJECT)])
+        return redisClient.zadd([namespaces.topic('test-topic'), 1, JSON.stringify(BROWSER_SUBSCRIPTION_OBJECT)])
         .then(() => {
             return Subscription.remove('test-topic', EXAMPLE_REQUEST);
         })
         .then((response) => {
             response.should.equal(true);
             let multi = redisClient.multi();
-            multi.zscore('topic:subscriptions::test-topic', JSON.stringify(EXAMPLE_REQUEST));
-            multi.sismember(namespaces.allTopicList(), 'topic:subscriptions::test-topic');
+            multi.zscore(namespaces.topic('test-topic'), JSON.stringify(EXAMPLE_REQUEST));
+            multi.sismember(namespaces.allTopicList(), namespaces.topic('test-topic'));
             return multi.exec();
         })
         .then(([zscoreResponse, sismemberResponse]) => {
@@ -42,7 +42,7 @@ describe('Subscription/remove', function() {
 
     it("Calls SNS unsubscribe when topic is empty", function() {
         // First add the entry we want to test removing.
-        return redisClient.zadd(['topic:subscriptions::test-topic', 1, JSON.stringify(BROWSER_SUBSCRIPTION_OBJECT)])
+        return redisClient.zadd([namespaces.topic('test-topic'), 1, JSON.stringify(BROWSER_SUBSCRIPTION_OBJECT)])
         .then(() => {
             return Subscription.remove('test-topic', EXAMPLE_REQUEST);
         })
@@ -57,7 +57,7 @@ describe('Subscription/remove', function() {
         newExample.data.endpoint = 'https://blah.blah';
 
         // First add the entry we want to test removing.
-        return redisClient.zadd('topic:subscriptions::test-topic', 1, JSON.stringify(BROWSER_SUBSCRIPTION_OBJECT), 2, JSON.stringify(newExample.data))
+        return redisClient.zadd(namespaces.topic('test-topic'), 1, JSON.stringify(BROWSER_SUBSCRIPTION_OBJECT), 2, JSON.stringify(newExample.data))
         .then((numAdded) => {
             return Subscription.remove('test-topic', newExample);
         })
