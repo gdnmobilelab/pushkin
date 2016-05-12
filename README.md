@@ -47,3 +47,5 @@ Tests can be run with:
 This started off as an experiment and ballooned outwards, so the code is quite
 messy and the documentation is currently sparse. Sorry. I intend to fix both of
 those issues when I have time to do so.
+
+<sub>With thanks to Lemon Jelly for the [name](https://open.spotify.com/track/2esN10vDncBUSYtE5cwGw2).</sub>
