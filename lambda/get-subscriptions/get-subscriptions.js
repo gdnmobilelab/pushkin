@@ -1,8 +1,8 @@
-import Subscription from '../../lib/subscription';
+import getSubscription from '../../lib/subscription/get';
 
 
 export function handler(event, context) {
-    Subscription.get(event.subscription)
+    getSubscription(event.subscription)
     .then((subscribed) => {
         context.done(null, subscribed);
     })
