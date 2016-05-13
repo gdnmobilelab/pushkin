@@ -5,23 +5,34 @@
     "allResponseTemplates": {
        ".*\"statusCode\":400.*": {
           "statusCode": "400",
+          "responseParameters": "$${corsResponseParameters}",
           "responseTemplates": "$${errorResponseTemplate}"
        },
        ".*\"statusCode\":403.*": {
           "statusCode": "403",
+          "responseParameters": "$${corsResponseParameters}",
           "responseTemplates": "$${errorResponseTemplate}"
        },
        ".*\"statusCode\":500.*": {
           "statusCode": "500",
+          "responseParameters": "$${corsResponseParameters}",
           "responseTemplates": "$${errorResponseTemplate}"
        },
        ".*\"statusCode\":404.*": {
           "statusCode": "404",
+          "responseParameters": "$${corsResponseParameters}",
           "responseTemplates": "$${errorResponseTemplate}"
        },
        "default": {
+          "responseParameters": "$${corsResponseParameters}",
           "statusCode": "200"
        }
+    },
+    "corsResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS,HEAD,DELETE,PATCH,POST,PUT'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Max-Age": "'3600'"
     },
     "environment": {
         "SERVERLESS_PROJECT": "${project}",

@@ -26,19 +26,7 @@
           "apiKey": "$input.params('x-api-key')"
         }
       },
-      "responses": {
-        "InvalidEndpoint:(.*)": {
-          "statusCode": "400",
-          "responseTemplates": "$${errorResponseTemplate}"
-        },
-        "NotFound:(.*)": {
-          "statusCode": "404",
-          "responseTemplates": "$${errorResponseTemplate}"
-        },
-        "default": {
-          "statusCode": "201"
-        }
-      }
+      "responses": "$${allResponseTemplates}"
     },
     {
       "path": "get-subscriptions",

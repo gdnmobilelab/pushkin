@@ -5,6 +5,7 @@ import Subscription from '../../../lib/subscription';
 import sinon from 'sinon';
 import {EXAMPLE_REQUEST} from '../../fixtures/example_web_push_subscription';
 import should from 'should';
+import webPush from '../../../lib/web-push';
 
 const redisClient = createRedisClient();
 
@@ -14,10 +15,12 @@ describe('Subscription/add', function() {
 
     beforeEach(() => {
         sinon.stub(SNS, 'addTopicSubscription').returns(Promise.resolve(true));
+        sinon.stub(SNS, 'removeTopicSubscription').returns(Promise.resolve(true));
     })
 
     afterEach(() => {
         SNS.addTopicSubscription.restore();
+        SNS.removeTopicSubscription.restore();
     })
 
 
@@ -64,5 +67,73 @@ describe('Subscription/add', function() {
             SNS.addTopicSubscription.calledOnce.should.equal(false);
         });
     })
+    
+    describe("with confirmation notifications", function() {
+        
+        afterEach(() => {
+            webPush.sendNotification.restore()
+        })
+        
+        let withNotification = Object.assign({
+            confirmationNotification: [
+                {
+                    "test": "yes"
+                }
+            ]
+        }, EXAMPLE_REQUEST);
+        
+   
+    
+        it("Send a confirmation notification when specified", function() {
+            sinon.stub(webPush, "sendNotification")
+            .returns(Promise.resolve(JSON.stringify({
+                "multicast_id": 5818568061551720000,
+                "success": 1,
+                "failure": 0,
+                "canonical_ids": 0,
+                "results": [
+                    {
+                        "message_id": "0:1463159425177924%b5e11c9ef9fd7ecd"
+                    }
+                ]
+            })));
+            
+            return Subscription.add('test-topic', withNotification)
+            .then((response) => {
+                response.should.equal(true);
+                webPush.sendNotification.calledOnce.should.equal(true);
+                return redisClient.zscore(namespaces.topic('test-topic'), JSON.stringify(withNotification.data));
+            })
+            .then((redisResponse) => {
+                should(redisResponse).not.be.null();
+            })
+        });
+    
+        it("Remove subscription when confirmation notification fails", function() {
+            sinon.stub(webPush, "sendNotification")
+            .returns(Promise.resolve(JSON.stringify({
+                "multicast_id": 5818568061551720000,
+                "success": 0,
+                "failure": 1,
+                "canonical_ids": 0,
+                "results": [
+                    {
+                        "error": "it failed"
+                    }
+                ]
+            })));
+            
+        
+            return Subscription.add('test-topic', withNotification)
+            .catch((err) => {
+                err.message.should.equal("it failed")
+                return redisClient.zscore(namespaces.topic('test-topic'), JSON.stringify(withNotification.data));
+            })
+            .then((redisResponse) => {
+                should(redisResponse).be.null();
+            })
+        });
+        
+     })
 
 })
