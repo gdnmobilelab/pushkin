@@ -5,7 +5,7 @@
   "customName": false,
   "customRole": false,
   "handler": "handler.handler",
-  "timeout": 6,
+  "timeout": 300,
   "memorySize": 1024,
   "authorizer": {},
   "custom": {

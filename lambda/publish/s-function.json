@@ -27,7 +27,14 @@
           "apiKey": "$input.params('x-api-key')"
         }
       },
-      "responses": "$${allResponseTemplates}"
+      "responses": "$${limitDomainResponseTemplates}"
+    },
+    {
+      "path": "topics/{topic}",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsLimitToAdminOptionsResponse}"
     }
   ],
   "events": [],

@@ -3,7 +3,7 @@ import should from 'should';
 import env from './env.json';
 
 
-GLOBAL.should = should;
+global.should = should;
 
 Object.assign(process.env, env);
 

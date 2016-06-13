@@ -28,11 +28,43 @@
           "statusCode": "200"
        }
     },
+    "limitDomainResponseTemplates": {
+       ".*\"statusCode\":400.*": {
+          "statusCode": "400",
+          "responseParameters": "$${corsLimitDomainResponseParameters}",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       ".*\"statusCode\":403.*": {
+          "statusCode": "403",
+          "responseParameters": "$${corsLimitDomainResponseParameters}",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       ".*\"statusCode\":500.*": {
+          "statusCode": "500",
+          "responseParameters": "$${corsLimitDomainResponseParameters}",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       ".*\"statusCode\":404.*": {
+          "statusCode": "404",
+          "responseParameters": "$${corsLimitDomainResponseParameters}",
+          "responseTemplates": "$${errorResponseTemplate}"
+       },
+       "default": {
+          "responseParameters": "$${corsLimitDomainResponseParameters}",
+          "statusCode": "200"
+       }
+    },
     "corsResponseParameters": {
         "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
         "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS,HEAD,DELETE,PATCH,POST,PUT'",
         "method.response.header.Access-Control-Allow-Origin": "'*'",
         "method.response.header.Access-Control-Max-Age": "'3600'"
+    },
+    "corsLimitDomainResponseParameters": {
+      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+      "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS,HEAD,DELETE,PATCH,POST,PUT'",
+      "method.response.header.Access-Control-Allow-Origin": "'${admin_domain}'",
+      "method.response.header.Access-Control-Max-Age": "'3600'"
     },
     "environment": {
         "SERVERLESS_PROJECT": "${project}",
@@ -41,23 +73,30 @@
         "IAM_ROLE":"${iamRoleArnLambda}",
         "REDIS_HOST": "${redis_host}",
         "GCM_API_KEY": "${gcm_api_key}",
-        "API_KEY__ADMIN": "${admin_api_key}"
+        "BACKUP_GCM_API_KEY": "${backup_gcm_api_key}",
+        "API_KEY__ADMIN": "${admin_api_key}",
+        "SLACK_WEBHOOK": "${slack_webhook}"
     },
     "vpc": "${vpc}",
     "apiCorsOptionsResponse": {
-    "default": {
-      "statusCode": "200",
-      "responseParameters": {
-        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
-        "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS,HEAD,DELETE,PATCH,POST,PUT'",
-        "method.response.header.Access-Control-Allow-Origin": "'*'",
-        "method.response.header.Access-Control-Max-Age": "'3600'"
-      },
-      "responseModels": {},
-      "responseTemplates": {
-        "application/json": ""
+      "default": {
+        "statusCode": "200",
+        "responseParameters": "$${corsResponseParameters}",
+        "responseModels": {},
+        "responseTemplates": {
+          "application/json": ""
+        }
       }
-    }
+  },
+  "apiCorsLimitToAdminOptionsResponse": {
+      "default": {
+        "statusCode": "200",
+        "responseParameters": "$${corsLimitDomainResponseParameters}",
+        "responseModels": {},
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
   },
   "apiCorsRequestTemplate": {
     "application/json": {
