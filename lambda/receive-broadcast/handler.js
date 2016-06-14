@@ -1,4 +1,5 @@
 import BulkPublish from '../../lib/bulk-publish';
+require('source-map-support').install();
 
 export function handler(event, context, cb) {
     
