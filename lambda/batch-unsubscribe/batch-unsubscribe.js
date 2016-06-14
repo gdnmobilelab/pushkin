@@ -1,5 +1,6 @@
 import PromiseTools from 'promise-tools';
 import Subscription from '../../lib/subscription';
+import sendToSlack from '../../lib/util/send-to-slack';
 
 export default (event, context, cb) => {
     let sns = event.Records[0].Sns;
@@ -12,8 +13,13 @@ export default (event, context, cb) => {
             data: subscription
         });
     }).then((removed) => {
-      context.done(null);
+
+        let slackMsg = {
+            text: `Removed ${removed.length} NotRegistered subscribers`
+        };
+
+        sendToSlack(slackMsg).then(() => context.done(null));
     }).catch((err) => {
-      context.done(err);
+        context.done(err);
     })
 }
