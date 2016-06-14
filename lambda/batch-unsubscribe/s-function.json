@@ -1,0 +1,26 @@
+{
+  "name": "batch-unsubscribe",
+  "runtime": "nodejs4.3",
+  "description": "Serverless Lambda function for project: pushy",
+  "customName": false,
+  "customRole": false,
+  "handler": "batch-unsubscribe.default",
+  "timeout": 60,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [],
+  "events": [
+    {
+      "name": "sns",
+      "type": "sns",
+      "config": {
+        "topicName": "${stage}__${batch_unsubscribe_topic}"
+      }
+    }
+  ],
+  "environment": "$${environment}",
+  "vpc": "$${vpc}"
+}

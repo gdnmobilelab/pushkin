@@ -1,3 +1,4 @@
+
 import handler from '../../lambda/subscription/subscription.js';
 import PromisifyLambda from 'promisify-aws-lambda';
 import Subscription from '../../lib/subscription';

@@ -75,7 +75,8 @@
         "GCM_API_KEY": "${gcm_api_key}",
         "BACKUP_GCM_API_KEY": "${backup_gcm_api_key}",
         "API_KEY__ADMIN": "${admin_api_key}",
-        "SLACK_WEBHOOK": "${slack_webhook}"
+        "SLACK_WEBHOOK": "${slack_webhook}",
+        "BATCH_UNSUBSCRIBE_TOPIC": "${batch_unsubscribe_topic}"
     },
     "vpc": "${vpc}",
     "apiCorsOptionsResponse": {
