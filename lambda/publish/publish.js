@@ -3,7 +3,6 @@ import LambdaErrorHandler from '../../lib/util/lambda-error-handler';
 import SNS from '../../lib/sns';
 
 export default (event, context, cb) => {
-    console.log(event);
     return checkAPIKey("admin", event)
     .then(() => {
         return SNS.publish(event.topic, event.message);
