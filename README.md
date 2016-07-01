@@ -1,4 +1,4 @@
-# Pushpin
+# Pushkin
 
 A Node and AWS Lambda/SNS powered system for sending
 [web notifications](https://developer.mozilla.org/en-US/docs/Web/API/notification)
@@ -12,7 +12,7 @@ requires individual encryption for each client.
 
 ## What does it do?
 
-Pushpin listens to SNS topics, receiving push notifications as they are sent
+Pushkin listens to SNS topics, receiving push notifications as they are sent
 to iOS and Android devices. It then multiplies that message by the number
 of web clients subscribed, batches them up (currently into batches of 200) and
 fires Lambda instances for each batch, allowing us to send numerous notifications
