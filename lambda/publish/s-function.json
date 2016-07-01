@@ -5,7 +5,7 @@
   "customName": false,
   "customRole": "${exec_role}",
   "handler": "publish.default",
-  "timeout": 6,
+  "timeout": 300,
   "memorySize": 128,
   "authorizer": {},
   "custom": {

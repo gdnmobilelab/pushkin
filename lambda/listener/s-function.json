@@ -5,8 +5,8 @@
   "customName": false,
   "customRole": "${exec_role}",
   "handler": "listener.default",
-  "timeout": 6,
-  "memorySize": 128,
+  "timeout": 300,
+  "memorySize": 1024,
   "authorizer": {},
   "custom": {
     "excludePatterns": []
