@@ -76,7 +76,11 @@
         "BACKUP_GCM_API_KEY": "${backup_gcm_api_key}",
         "API_KEY__ADMIN": "${admin_api_key}",
         "SLACK_WEBHOOK": "${slack_webhook}",
-        "BATCH_UNSUBSCRIBE_TOPIC": "${batch_unsubscribe_topic}"
+        "BATCH_UNSUBSCRIBE_TOPIC": "${batch_unsubscribe_topic}",
+        "DB_HOST": "${db_host}",
+        "DB_USER": "${db_user}",
+        "DB_PASS": "${db_pass}",
+        "DB_NAME": "${db_name}"
     },
     "vpc": "${vpc}",
     "apiCorsOptionsResponse": {

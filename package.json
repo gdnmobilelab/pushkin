@@ -23,6 +23,7 @@
     "fsmonitor": "^0.2.4",
     "json-loader": "^0.5.4",
     "mock-aws-sinon": "^1.0.3",
+    "mysql": "^2.11.1",
     "node-fetch": "^1.5.3",
     "promise-redis": "0.0.5",
     "promise-tools": "^1.0.2",

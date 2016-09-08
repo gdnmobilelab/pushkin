@@ -34,13 +34,17 @@ module.exports = {
     plugins: [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                unused: true,
-                dead_code: true,
-                warnings: false,
-                drop_debugger: true
-            }
-        })
+        //When this is active the mysql package doesn't work correctly.
+        //Get the error "PROTOCOL_INCORRECT_PACKET_SEQUENCE"
+        //See http://stackoverflow.com/questions/33261828/serverless-framework-with-node-mysq-error-protocol-incorrect-packet-sequence
+        //Above URL has relevant details (error occurs when using the servless optimization plugin)
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         unused: true,
+        //         dead_code: true,
+        //         warnings: false,
+        //         drop_debugger: true
+        //     }
+        // })
     ]
 }
