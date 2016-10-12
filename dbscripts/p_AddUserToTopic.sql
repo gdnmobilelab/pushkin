@@ -9,7 +9,6 @@ DELIMITER $$
         declare v_user_id BIGINT;
         declare v_user_status BIGINT;
         declare v_active_status BIGINT;
-        declare v_user_in_topic BIGINT;
         declare v_topic_status BIGINT;
 
         select id, status_id into v_user_id, v_user_status from users where endpoint = p_endpoint;
@@ -25,10 +24,6 @@ DELIMITER $$
         IF v_user_status != v_active_status THEN
             select f_MakeUserActive(p_endpoint);
         END IF;
-
-        select id from user_topics_subscriptions where
-            topic_id = p_topic_name
-            and user_id = v_user_id into v_user_in_topic;
 
         -- Create the topic if it doesn't exist, ignore if it does
         call p_CreateTopic(p_topic_name);

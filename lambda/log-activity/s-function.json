@@ -1,0 +1,26 @@
+{
+  "name": "log-activity",
+  "runtime": "nodejs4.3",
+  "description": "Serverless Lambda function for project: pushy",
+  "customName": false,
+  "customRole": false,
+  "handler": "log-activity.default",
+  "timeout": 60,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [],
+  "events": [
+    {
+      "name": "sns",
+      "type": "sns",
+      "config": {
+        "topicName": "${stage}__${activity_logger_topic}"
+      }
+    }
+  ],
+  "environment": "$${environment}",
+  "vpc": "$${vpc}"
+}
